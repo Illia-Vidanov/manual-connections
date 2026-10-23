@@ -126,6 +126,11 @@ Payload   ${green}$payload${nc}
 
 Trying to bind the port... "
 
+echo $port > /opt/piavpn-manual/port_forwarding/port
+echo $expires_at > /opt/piavpn-manual/port_forwarding/expires_at
+echo $payload > /opt/piavpn-manual/port_forwarding/payload
+echo $signature > /opt/piavpn-manual/port_forwarding/signature
+
 # Now we have all required data to create a request to bind the port.
 # We will repeat this request every 15 minutes, in order to keep the port
 # alive. The servers have no mechanism to track your activity, so they
