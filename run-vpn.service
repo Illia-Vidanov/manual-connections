@@ -1,0 +1,20 @@
+[Unit]
+Description=Run PIA vpn with port forwarding
+After=network-online.target
+
+[Service]
+Type=notify
+NotifyAccess=all
+WorkingDirectory=/opt/piavpn-manual/manual-connections
+ExecStart=bash /opt/piavpn-manual/manual-connections/run_vpn.sh
+ExecStop=/bin/bash -c "/bin/kill $(cat /opt/piavpn-manual/pia_pid)"
+LoadCredentialEncrypted=pass:/opt/piavpn-manual/manual-connections/pass
+LoadCredentialEncrypted=user:/opt/piavpn-manual/manual-connections/user
+Restart=on-failure
+
+ProtectHome=true
+ProtectSystem=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
